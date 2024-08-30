@@ -23,7 +23,7 @@ class AuthControler {
         const userExist = await User.findOne({ email: email });
     
         if(userExist)
-            return res.status(422).json({ message: "insira outro e-mail" });
+            return res.status(409).json({ message: "insira outro e-mail" });
         
         const salt = await bcrypt.genSalt(12);
         const passwordHash = await bcrypt.hash(password, salt);
